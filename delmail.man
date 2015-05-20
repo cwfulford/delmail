@@ -28,20 +28,20 @@ Linux and Mac OS X.
 .B delmail
 can use "\fBtelnet\fR"
 and "\fBexpect\fR"
-to connect to an IMAP server and examine nominated mailboxes and exceed old
+to connect to an IMAP server, examine nominated mailboxes and delete old
 message in excess of the threshold set on the command line or in the configuration
-file. This access method is preferred when the mail account is active. This 
+file. This access method is preferred when the mail account is active. The 
 method is essential for Mbox mail formats.
 .LP
 Out of hours setting the 
 .B -p
-option to port 22 cause the script to 
+option to port 22 causes the script to 
 .B ssh 
 to access the mail server and remove the message files directly. This is 
 quicker and appropriate to a regular overnight
 .B cron 
 job, it does however require a Maildir email repository. It will not work
-with Mbox or other mail types. 
+with Mbox or other mail formats. 
 .LP
 I wrote this one after I discovered that a client who was complaining about
 POP3 performance on a 1 and 1 server in the cloud, had over 20,000 messages in
@@ -50,10 +50,6 @@ being deleted or archived, not even spam. Manipulating the mailboxes
 through the Mac-OS X mail client was a nightmare. I needed  a tool that
 would monitor the the remote mailboxes and return data that I could feed
 into alerts and e-mail reminders.
-.B NB .
-Unlike the invocation of the same script with the name
-.B chkmail
-a valid email address must be given on the command line.
 .SH OPTIONS
 .TP 5
 \fB-a \fI<mail_address>\fR
@@ -84,9 +80,6 @@ script or
 .LP
 This is only required in the unusual situation where the maildomain cannot
 be resolved.
-.TP 5
-.B -L
-List the available mailboxes for this mail user account. 
 .TP 5
 .B -l
 Use the local syslog facility to log that the check has been made and 

@@ -51,20 +51,20 @@ all versions of UNIX, Linux and Mac OS X.</p>
 
 <p style="margin-left:11%; margin-top: 1em"><b><a href="./scripts.php?script=delmail">delmail</a></b>
 can use &quot;<b>telnet</b>&quot; and
-&quot;<b>expect</b>&quot; to connect to an IMAP server and
-examine nominated mailboxes and exceed old message in excess
+&quot;<b>expect</b>&quot; to connect to an IMAP server,
+examine nominated mailboxes and delete old message in excess
 of the threshold set on the command line or in the
 configuration file. This access method is preferred when the
-mail account is active. This method is essential for Mbox
+mail account is active. The method is essential for Mbox
 mail formats.</p>
 
 <p style="margin-left:11%; margin-top: 1em">Out of hours
-setting the <b>-p</b> option to port 22 cause the script to
+setting the <b>-p</b> option to port 22 causes the script to
 <b>ssh</b> to access the mail server and remove the message
 files directly. This is quicker and appropriate to a regular
 overnight <b>cron</b> job, it does however require a Maildir
 email repository. It will not work with Mbox or other mail
-types.</p>
+formats.</p>
 
 <p style="margin-left:11%; margin-top: 1em">I wrote this
 one after I discovered that a client who was complaining
@@ -74,10 +74,7 @@ in a single mailbox. Nothing was ever being deleted or
 archived, not even spam. Manipulating the mailboxes through
 the Mac-OS X mail client was a nightmare. I needed a tool
 that would monitor the the remote mailboxes and return data
-that I could feed into alerts and e-mail reminders. <b>NB
-.</b> Unlike the invocation of the same script with the name
-<b>chkmail</b> a valid email address must be given on the
-command line.</p>
+that I could feed into alerts and e-mail reminders.</p>
 
 <h2 id="heading5">OPTIONS
 </h2>
@@ -147,18 +144,6 @@ cannot be resolved.</p>
 <col width="4%" class="center"></col>
 <col width="82%"></col>
 </colgroup>
-<tr valign="top" align="left">
-<td></td>
-<td>
-
-
-<p><b>-L</b></p></td>
-<td></td>
-<td>
-
-
-<p>List the available mailboxes for this mail user
-account.</p> </td></tr>
 <tr valign="top" align="left">
 <td></td>
 <td>
