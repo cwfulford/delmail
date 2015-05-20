@@ -1,7 +1,7 @@
 #!/bin/bash
-# $Id: delmail,v 1.8 2015/05/20 19:50:34 fulford Exp fulford $
+# $Id: delmail,v 1.9 2015/05/20 19:51:22 fulford Exp fulford $
 # $Source: /src/merlin/usr/local/etc/RCS/delmail,v $
-# $Revision: 1.8 $
+# $Revision: 1.9 $
 # Author C W Fulford.
 # Copyright 2014-2015 (c) C W Fulford.
 # Licensed for public use under the LGPL, .
@@ -42,7 +42,7 @@ while [ $# -gt 0 ] ;do
 		-p) port=$2>>$tmp;shift 2;;
 		-u) echo "user=$2">>$tmp;shift 2;;
 		-v) verbose=:;nl="\\n";shift;;
-		-V) echo "$cmd $Revision: 1.8 $ $Date: 2015/05/20 19:50:34 $"|awk '{print $1,$3,$6}';exit;;  
+		-V) echo "$cmd $Revision: 1.9 $ $Date: 2015/05/20 19:51:22 $"|awk '{print $1,$3,$6}';exit;;  
 		-*) echo "syntax: $syntax">&2;exit 1;;
 	         *) id=$1;shift;;
 	esac
@@ -164,7 +164,7 @@ for m in $mbox $folders ;do
 		}
 		if [ "$expunge" ];then
 		   if [ $total -lt $max ];then
-			echo "$cmd: Total messages ($total) less then maximum ($mas)">&2
+			echo "$cmd: Total messages ($total) less then maximum ($max)">&2
 			exit 1	
 		   else
 		   	del=`expr $total - $max`
