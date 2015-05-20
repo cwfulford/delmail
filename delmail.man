@@ -1,4 +1,4 @@
-.TH DELMAIL 8l "28th April 2015 r1.5
+.TH DELMAIL 8l "28th April 2015 r1.6
 .SH NAME
 .B delmail
 - deletes excess messages from a specified mail account on a remote IMAP server.
