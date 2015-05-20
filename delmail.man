@@ -1,22 +1,22 @@
-.TH DELMAIL 8l "28th April 2015 r
+.TH DELMAIL 8l "28th April 2015 r1.5
 .SH NAME
 .B delmail
 - deletes excess messages from a specified mail account on a remote IMAP server.
 .SH SYNOPSIS
 \fBdelmail\fR
 [\fB-c \fI<config_file>\fR]
+[\fB-b \fI<mailbox>\fR]
 [\fB-d\fR]
 [\fB-f\fR]
 [\fB-i \fI<imap_server>\fR]
 [\fB-L \fR]
 [\fB-l \fR]
-[\fB-m \fI<mailbox>\fR]
+[\fB-m \fI<#max>\fR]
 [\fB-n \fR]
 [\fB-P \fI<passwd>\fR]
 [\fB-p \fI<port_no>\fR]
 [\fB-u \fI<login_name>\fR]
 [\fB-v \fR]
-[\fB-w \fI<#_messages>\fR]
 [\fIconfig_id>\fR] |
 [\fB-V \fR]
 .br
@@ -54,6 +54,10 @@ into alerts and e-mail reminders.
 .TP 5
 \fB-a \fI<mail_address>\fR
 .TP 5
+\fB-b \fI<mailbox>\fR
+Count the number of messages in the nominated mailboxes. The option is redundant
+if the mailbox id is used.
+.TP 5
 .B -c
 Use the specified configuration file in preference to the default
 \fI"/usr/local/etc/delmail.cf"\fR.
@@ -85,9 +89,16 @@ be resolved.
 Use the local syslog facility to log that the check has been made and 
 record the number of messages returned.
 .TP 5
-\fB-m \fI<mailbox>\fR
-Count the number of messages in the nominated mailboxes. The option is redundant
-if the mailbox id is used.
+\fBmw\fI <#max_no_of messages>\fR
+Sets the threshold for the number of messages a mail box may hold before
+a warning is issued. If the 
+.B -n
+option is used warning message will be sent by e-mail to the mail box owner or
+the person defined in the configuration file with the \fIalert\fR equate, a
+warning is also printed to standard error.
+.IP
+The warning threshold may also be set in the configuration file but will be
+over ridden by the value set here.
 .TP 5
 \fB-n\fR
 Notify the user that the deletions have taken place by send a  
@@ -162,17 +173,6 @@ option
 .B delmail
 always reports the checking of a mail box and the number of messages found.
 .TP 5
-\fB-w\fI <#_no_of messages>\fR
-Sets the threshold for the number of messages a mail box may hold before
-a warning is issued. If the 
-.B -n
-option is used warning message will be sent by e-mail to the mail box owner or
-the person defined in the configuration file with the \fIalert\fR equate, a
-warning is also printed to standard error.
-.IP
-The warning threshold may also be set in the configuration file but will be
-over ridden by the value set here.
-.IP
 .TP 5
 <\fIconfig_id\fR>
 The configuration identity is the key to the stanza in the configuration

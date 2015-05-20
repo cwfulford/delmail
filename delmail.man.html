@@ -28,14 +28,13 @@ remote IMAP server.</p>
 
 
 <p style="margin-left:11%; margin-top: 1em"><b><a href="./scripts.php?script=delmail">delmail</a></b>
-[<b>-c</b> <i>&lt;config_file&gt;</i>] [<b>-d</b>]
-[<b>-f</b>] [<b>-i</b> <i>&lt;imap_server&gt;</i>]
-[<b>-L</b> ] [<b>-l</b> ] [<b>-m</b> <i>&lt;mailbox&gt;</i>]
-[<b>-n</b> ] [<b>-P</b> <i>&lt;passwd&gt;</i>] [<b>-p</b>
-<i>&lt;port_no&gt;</i>] [<b>-u</b>
-<i>&lt;login_name&gt;</i>] [<b>-v</b> ] [<b>-w</b>
-<i>&lt;#_messages&gt;</i>] [<i>config_id&gt;</i>] |
-[<b>-V</b> ]</p>
+[<b>-c</b> <i>&lt;config_file&gt;</i>] [<b>-b</b>
+<i>&lt;mailbox&gt;</i>] [<b>-d</b>] [<b>-f</b>] [<b>-i</b>
+<i>&lt;imap_server&gt;</i>] [<b>-L</b> ] [<b>-l</b> ]
+[<b>-m</b> <i>&lt;#max&gt;</i>] [<b>-n</b> ] [<b>-P</b>
+<i>&lt;passwd&gt;</i>] [<b>-p</b> <i>&lt;port_no&gt;</i>]
+[<b>-u</b> <i>&lt;login_name&gt;</i>] [<b>-v</b> ]
+[<i>config_id&gt;</i>] | [<b>-V</b> ]</p>
 
 <h2 id="heading3">AVAILABILITY
 </h2>
@@ -81,7 +80,12 @@ that I could feed into alerts and e-mail reminders.</p>
 
 
 <p style="margin-left:11%; margin-top: 1em"><b>-a</b>
-<i>&lt;mail_address&gt;</i></p>
+<i>&lt;mail_address&gt;</i> <b><br/>
+-b</b> <i>&lt;mailbox&gt;</i></p>
+
+<p style="margin-left:18%;">Count the number of messages in
+the nominated mailboxes. The option is redundant if the
+mailbox id is used.</p>
 
 <table width="100%" border="0" rules="none" frame="void"
        cellspacing="0" cellpadding="0">
@@ -158,12 +162,19 @@ cannot be resolved.</p>
 been made and record the number of messages returned.</p></td></tr>
 </table>
 
-<p style="margin-left:11%;"><b>-m</b>
-<i>&lt;mailbox&gt;</i></p>
+<p style="margin-left:11%;"><b>mw</b> <i>&lt;#max_no_of
+messages&gt;</i></p>
 
-<p style="margin-left:18%;">Count the number of messages in
-the nominated mailboxes. The option is redundant if the
-mailbox id is used.</p>
+<p style="margin-left:18%;">Sets the threshold for the
+number of messages a mail box may hold before a warning is
+issued. If the <b>-n</b> option is used warning message will
+be sent by e-mail to the mail box owner or the person
+defined in the configuration file with the <i>alert</i>
+equate, a warning is also printed to standard error.</p>
+
+<p style="margin-left:18%; margin-top: 1em">The warning
+threshold may also be set in the configuration file but will
+be over ridden by the value set here.</p>
 
 <table width="100%" border="0" rules="none" frame="void"
        cellspacing="0" cellpadding="0">
@@ -279,21 +290,8 @@ reports the checking of a mail box and the number of
 messages found.</p></td></tr>
 </table>
 
-<p style="margin-left:11%;"><b>-w</b> <i>&lt;#_no_of
-messages&gt;</i></p>
 
-<p style="margin-left:18%;">Sets the threshold for the
-number of messages a mail box may hold before a warning is
-issued. If the <b>-n</b> option is used warning message will
-be sent by e-mail to the mail box owner or the person
-defined in the configuration file with the <i>alert</i>
-equate, a warning is also printed to standard error.</p>
-
-<p style="margin-left:18%; margin-top: 1em">The warning
-threshold may also be set in the configuration file but will
-be over ridden by the value set here.</p>
-
-<p style="margin-left:11%;">&lt;<i>config_id</i>&gt;</p>
+<p style="margin-left:11%; margin-top: 1em">&lt;<i>config_id</i>&gt;</p>
 
 <p style="margin-left:18%;">The configuration identity is
 the key to the stanza in the configuration file which will

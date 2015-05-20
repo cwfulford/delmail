@@ -1,7 +1,7 @@
 #!/bin/bash
-# $Id: delmail,v 1.4 2015/05/20 17:33:08 fulford Exp $
+# $Id: delmail,v 1.5 2015/05/20 18:23:31 fulford Exp fulford $
 # $Source: /src/merlin/usr/local/etc/RCS/delmail,v $
-# $Revision: 1.4 $
+# $Revision: 1.5 $
 # Author C W Fulford.
 # Copyright 2014-2015 (c) C W Fulford.
 # Licensed for public use under the LGPL, .
@@ -11,8 +11,9 @@ cmd=`basename $0`
 [ $cmd == "delmail" ] && expunge=":"
 tmp=/var/tmp/$cmd.$$
 case $cmd in
-	chkmail) syntax="$cmd [-a <addr>] [-c <config>] [-d] [-i <imap_server>] [-L] [-l] [-m <mail_box>] [-n] [-P <password>] [-p <port> [-u <username>] [-v] [-w <#>] [<config_id>]|[-V]";;
+	chkmail) syntax="$cmd [-a <addr>] [-b <mbox> ] [-c <config>] [-d] [-i <imap_server>] [-L] [-l] [-m <#max>] [-n] [-P <password>] [-p <port> [-u <username>] [-v] [<config_id>]|[-V]";;
 	delmail) syntax="$cmd [-c <config>] [-d] [-i <imap_server>] [-l] [-m <mbox>] [-n] [-P <password>] [-p <port> [-v] [-w <#>] <mail_address>|[-V]";;
+esac
 while [ $# -gt 0 ] ;do
 	case $1 in 
 		-a) [ $cmd = "delmail" ]&&{
@@ -20,12 +21,14 @@ while [ $# -gt 0 ] ;do
 			exit 1
 		    }
 		    echo "addr=$2">>$tmp;shift 2;;
+		-b) echo "mbox=$2">>$tmp;shift 2;;
 		-c) config=$2;shift;;
 		-d) debug=:;set -x;shift;;
-		-f) [ $cmd = "delmail" ]{
+		-f) [ $cmd = "delmail" ]&&{
 			echo $syntax>&2;
 			exit 1
-		    chk_fldr=:;shift;; }
+		    }
+		    chk_fldr=:;shift;; 
 		-i) echo "srvr=$2">$tmp;shift 2;;
 		-L) [ $cmd = "delmail" ]&&{
 			echo $syntax>&2;
@@ -33,14 +36,13 @@ while [ $# -gt 0 ] ;do
 		    }
 		    list=":";shift;;
 		-l) log=:;shift;;				
-		-m) echo "mbox=$2">>$tmp;shift 2;;
+		-m) echo "max=$2">>$tmp;shift 2;;
 		-n) notice=:;shift;;
 		-P) echo "passwd=$2">>$tmp;shift 2;;
 		-p) port=$2>>$tmp;shift 2;;
 		-u) echo "user=$2">>$tmp;shift 2;;
 		-v) verbose=:;nl="\\n";shift;;
-		-V) echo "$cmd $Revision: 1.4 $ $Date: 2015/05/20 17:33:08 $"|awk '{print $1,$3,$6}';exit;;  
-		-w) echo "warn=$2">>$tmp;shift 2;;
+		-V) echo "$cmd $Revision: 1.5 $ $Date: 2015/05/20 18:23:31 $"|awk '{print $1,$3,$6}';exit;;  
 		-*) echo "syntax: $syntax">&2;exit 1;;
 	         *) id=$1;shift;;
 	esac
@@ -77,11 +79,11 @@ srvr=${srvr:-"imap.`hostname -d`"}
 user=${user:-$addr}
 po=`echo $addr|awk -F@ '{split($2,a,".");print a[1]}'`
 proto=${proto:-"ssl"}
-warn=${warn:-100}
+max=${max:-100}
 
 if [ "$expunge" ];then
 	[ "$verbose" ] &&{
-		echo "$cmd: Warning messages in excess of $warn will be deleted"
+		echo "$cmd: Warning messages in excess of $max will be deleted"
 	}
 fi
 if [ "$list" ];then
@@ -132,15 +134,15 @@ for m in $mbox $folders ;do
 		if [ "$verbose" ]; then 
 			#printf "%6d\t$m\n" $total
 			echo  "$total messages"
-		elif [ ${total:-0} -ge $warn ];then
+		elif [ ${total:-0} -ge $max ];then
 			echo  "Warning: ${user}'s $m on $srvr has $total messages" >&2
 		fi
 	       	[ "$log" ] && {
-		  	logger -p mail.notice -t $cmd "$total messages for $user $m at $srvr."
+		  	logger -p mail.notice -t $cmd "$total messages in $user $m at $srvr."
 		}
 
 			
-		[ ${total:-0} -gt "$warn" -a "$notice" ] && {
+		[ ${total:-0} -gt "$max" -a "$notice" ] && {
 			fname=`echo $alert|awk -F@ '{split($1,a,".");print a[1]}'`
 			fname=`echo $fname|awk -F@ '{sub(".",substr((toupper($1)),1,1),$1);print}'`
 		
@@ -155,19 +157,19 @@ for m in $mbox $folders ;do
 			If messages need to be kept on-line move them to
 			other folders.
 
-			Try to keep your inbox to under $warn messages.
+			Try to keep your inbox to under $max messages.
 
 			Clifford W Fulford
 			Mail Administrator
 		.
 		}
 		if [ "$expunge" ];then
-		   del=`expr $total - $warn`
+		   del=`expr $total - $max`
 		   expect -f $del_msgs $srvr $proto  $addr $m "$passwd" $del
 		   total=`expr $total - $del`
 		     [ "$log" ] &&{
 		       	logger -p mail.notice -t $cmd "$del messages deleted for $user $m at $srvr."
-		  	logger -p mail.notice -t $cmd "$total messages for $user $m at $srvr."
+		  	logger -p mail.notice -t $cmd "$total messages in $user $m at $srvr."
 		      }
 		      [ $verbose ] &&{
 		      	s=s;[ $del -eq 1 ] && s=""
