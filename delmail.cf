@@ -1,0 +1,279 @@
+<pre>
+
+accounts-snap:
+	addr=accounts@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+allen:
+	addr=allen.drench@dougal-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+allen-snap:
+	addr=allen.drench@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+thumberlina:
+	addr=thumberlina.voldemorte@dougal-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	alert=fulford@fulford.net
+
+thumberlina-total:
+	addr=thumberlina.voldemorte@total-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	alert=fulford@fulford.net
+
+ann:
+	addr=ann.white@dougal-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+bounced:
+	#alert=flash.gordan@dougal-dog.co.uk
+	addr=bounced@dougal-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+judy-snap:
+	addr=judy.drench@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	warn=1000
+	alert=fulford@fulford.net
+	folders="INBOX.Spam .Archive"
+
+judy:
+	addr=judy.drench@dougal-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	alert=fulford@fulford.net
+	folders="INBOX.Spam"
+
+
+judy-paddll:
+	addr=judy.drench@paddll.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	alert=fulford@fulford.net
+	folders="INBOX.Spam"
+
+charlie:
+	addr=charlie.syelaid@dougal-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	alert=fulford@fulford.net
+	folders="INBOX.Spam .Archive"
+	
+
+communications:
+	addr=communications@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+elise:
+	addr=elise.smythe@dougal-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	folders="INBOX.Spam"
+
+fulford-snap:
+	addr=fulford@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	folders=INBOX.Spam
+
+fulford-dougal:
+	addr=clifford.fulford@dougal-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	folders=INBOX.Spam
+
+fulford:
+	addr=fulford
+	srvr=localhost
+	passwd=pasSword4u
+
+info:
+	addr=info@dougal-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+info-snap:
+	addr=info@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+info-total:
+	addr=info@total-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+flash:
+	addr=flash.gordan@dougal-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	proto=ssl
+	folders="INBOX.Spam"
+
+flash-snap:
+	addr=flash.gordan@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	folders="INBOX.Spam"
+
+flash-total:
+	addr=flash.gordan@total-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	folders="INBOX.Spam"
+
+flash-paddll:
+	addr=flash.gordan@paddll.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	folders="INBOX.Spam"
+
+invoices:
+	addr=invoices@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+jacqueline:
+	addr=jacqueline.chep@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+jane-snap:
+	addr=jane.furborough@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	folders="INBOX.Spam"
+
+jane:
+	addr=jane.furborough@dougal-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	folders="INBOX.Spam"
+
+joan:
+	addr=joan.hynd@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	folders="INBOX.Spam"
+
+marketing:
+	addr=marketing@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+natalie-snap:
+	addr=natalie.points@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	folders="INBOX.Spam"
+
+natalie:
+	addr=natalie.points@dougal-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	folders="INBOX.Spam"
+
+noreply:
+	addr=noreply@dougal-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+quotes:
+	addr=quotes@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+sahara-snap:
+	addr=sahara.hoover@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	alert=fulford@fulford.net
+	folders="INBOX.Spam"
+
+sahara-total:
+	addr=sahara.hoover@total-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	alert=fulford@fulford.net
+	folders="INBOX.Spam"
+
+sahara:
+	addr=sahara.hoover@dougal-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	alert=fulford@fulford.net
+	folders="INBOX.Spam"
+
+twitter:
+	addr=twitter@dougal-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	alert=fulford@fulford.net
+
+saharap-snap:
+	addr=sahara.pickard@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+	alert=fulford@fulford.net
+	folders="INBOX.Spam"
+
+tenderdocs:
+	addr=tenderdocs@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+dog-snap:
+	addr=dog@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+#test:
+	addr=fulford@notest.co.uik
+	srvr=dog
+	passwd=pasSword4u
+
+webform-snap:
+	addr=webform@snap.dragon.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+#webform:
+	addr=webform@dougal-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+webform-total:
+	addr=webform@total-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+accounts:
+	addr=accounts@dougal-dog.co.uk
+	srvr=imap.dougal.roundabout.com
+	passwd=pasSword4u
+
+######################################################################
+# This program is free software: you can redistribute it and or      #
+# modify it under the terms of the Lesser GNU General Public License #
+# as published by the Free Software Foundation, either version 3 of  #
+# the License, or (at your option) any later version.                #
+#                                                                    #
+# This program is distributed in the hope that it will be useful,    #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of     #    
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the      #
+# GNU General Public License for more details.                       #
+#                                                                    # 
+# A copy of the Lesser GNU General Public License and the GNU        #
+# General Public License is available at                             #
+# &#60;http://www.gnu.org/licenses/&#62;.                                    #
+######################################################################
+</pre>

@@ -1,0 +1,414 @@
+
+<p><a href="#heading1">NAME</a><br/>
+<a href="#heading2">SYNOPSIS</a><br/>
+<a href="#heading3">AVAILABILITY</a><br/>
+<a href="#heading4">DESCRIPTION</a><br/>
+<a href="#heading5">OPTIONS</a><br/>
+<a href="#heading6">FILES</a><br/>
+<a href="#heading7">EXAMPLES</a><br/>
+<a href="#heading8">BUGS</a><br/>
+<a href="#heading9">SEE ALSO</a><br/>
+<a href="#heading10">AUTHOR</a><br/>
+<a href="#heading11">HISTORY</a><br/>
+
+</p>
+<hr/>
+
+
+<h2 id="heading1">NAME
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b><a href="./scripts.php?script=delmail">delmail</a></b>
+- deletes excess messages from a specified mail account on a
+remote IMAP server.</p>
+
+<h2 id="heading2">SYNOPSIS
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b><a href="./scripts.php?script=delmail">delmail</a></b>
+[<b>-c</b> <i>&lt;config_file&gt;</i>] [<b>-d</b>]
+[<b>-f</b>] [<b>-i</b> <i>&lt;imap_server&gt;</i>]
+[<b>-L</b> ] [<b>-l</b> ] [<b>-m</b> <i>&lt;mailbox&gt;</i>]
+[<b>-n</b> ] [<b>-P</b> <i>&lt;passwd&gt;</i>] [<b>-p</b>
+<i>&lt;port_no&gt;</i>] [<b>-u</b>
+<i>&lt;login_name&gt;</i>] [<b>-v</b> ] [<b>-w</b>
+<i>&lt;#_messages&gt;</i>] [<i>config_id&gt;</i>] |
+[<b>-V</b> ]</p>
+
+<h2 id="heading3">AVAILABILITY
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b><a href="./scripts.php?script=delmail">delmail</a></b>
+is a Bourne shell script which should work equally well on
+all versions of UNIX, Linux and Mac OS X.</p>
+
+<h2 id="heading4">DESCRIPTION
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b><a href="./scripts.php?script=delmail">delmail</a></b>
+can use &quot;<b>telnet</b>&quot; and
+&quot;<b>expect</b>&quot; to connect to an IMAP server and
+examine nominated mailboxes and exceed old message in excess
+of the threshold set on the command line or in the
+configuration file. This access method is preferred when the
+mail account is active. This method is essential for Mbox
+mail formats.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Out of hours
+setting the <b>-p</b> option to port 22 cause the script to
+<b>ssh</b> to access the mail server and remove the message
+files directly. This is quicker and appropriate to a regular
+overnight <b>cron</b> job, it does however require a Maildir
+email repository. It will not work with Mbox or other mail
+types.</p>
+
+<p style="margin-left:11%; margin-top: 1em">I wrote this
+one after I discovered that a client who was complaining
+about POP3 performance on a 1 and 1 server in the cloud, had
+over 20,000 messages in her in-boxes, 13.5 thousand of them
+in a single mailbox. Nothing was ever being deleted or
+archived, not even spam. Manipulating the mailboxes through
+the Mac-OS X mail client was a nightmare. I needed a tool
+that would monitor the the remote mailboxes and return data
+that I could feed into alerts and e-mail reminders. <b>NB
+.</b> Unlike the invocation of the same script with the name
+<b>chkmail</b> a valid email address must be given on the
+command line.</p>
+
+<h2 id="heading5">OPTIONS
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>-a</b>
+<i>&lt;mail_address&gt;</i></p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<colgroup><col width="11%"></col>
+<col width="3%"></col>
+<col width="4%" class="center"></col>
+<col width="82%"></col>
+</colgroup>
+<tr valign="top" align="left">
+<td></td>
+<td>
+
+
+<p><b>-c</b></p></td>
+<td></td>
+<td>
+
+
+<p>Use the specified configuration file in preference to
+the default <i>&quot;/usr/local/etc/delmail.cf&quot;</i>. If
+no configuration file is found the script will attempt to
+soldier on with whatever information was supplied from the
+command line. If all else fails .B <a href="./scripts.php?script=delmail">delmail</a> will attempt to
+check &quot;<i>INBOX&quot;</i> for the user invoking the
+script. The IMAP server name being constructed from the
+local domain (<i>hostname -d</i>). It would be more sensible
+to terminate with syntax message on standard error but this
+does make some sort of sense if like me you want a lazy way
+to count the messages in your own in-box.</p></td></tr>
+<tr valign="top" align="left">
+<td></td>
+<td>
+
+
+<p><b>-d</b></p></td>
+<td></td>
+<td>
+
+
+<p>Set debug mode on. The <b>-x</b> option is set within
+the shell and each command in the script is echoed to the
+console.</p> </td></tr>
+</table>
+
+<p style="margin-left:11%;"><b>-i</b>
+<i>&lt;imap_server_name&gt;</i>.</p>
+
+<p style="margin-left:18%;">The name or IP address of the
+server to which the <b>expect</b> script or <b>ssh should
+connect.</b></p>
+
+<p style="margin-left:11%; margin-top: 1em">This is only
+required in the unusual situation where the maildomain
+cannot be resolved.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<colgroup><col width="11%"></col>
+<col width="3%"></col>
+<col width="4%" class="center"></col>
+<col width="82%"></col>
+</colgroup>
+<tr valign="top" align="left">
+<td></td>
+<td>
+
+
+<p><b>-L</b></p></td>
+<td></td>
+<td>
+
+
+<p>List the available mailboxes for this mail user
+account.</p> </td></tr>
+<tr valign="top" align="left">
+<td></td>
+<td>
+
+
+<p><b>-l</b></p></td>
+<td></td>
+<td>
+
+
+<p>Use the local syslog facility to log that the check has
+been made and record the number of messages returned.</p></td></tr>
+</table>
+
+<p style="margin-left:11%;"><b>-m</b>
+<i>&lt;mailbox&gt;</i></p>
+
+<p style="margin-left:18%;">Count the number of messages in
+the nominated mailboxes. The option is redundant if the
+mailbox id is used.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<colgroup><col width="11%"></col>
+<col width="3%"></col>
+<col width="4%" class="center"></col>
+<col width="82%"></col>
+</colgroup>
+<tr valign="top" align="left">
+<td></td>
+<td>
+
+
+<p><b>-n</b></p></td>
+<td></td>
+<td>
+
+
+<p>Notify the user that the deletions have taken place by
+send a message to the mail box specified in the
+<i>configuration</i> file.</p></td></tr>
+</table>
+
+<p style="margin-left:11%;"><b>-P</b>
+<i>&lt;password&gt;</i>.</p>
+
+<p style="margin-left:18%;">The password for the mail user
+account. It is possible to use this option in combination
+with the configuration file if you don&rsquo;t want to store
+passwords on disc. The mail account password is only
+required when imap is being used (ie <b>-p 143</b> or <b>-p
+993</b></p>
+
+<p style="margin-left:11%;"><b>-p</b>
+<i>&lt;port_number&gt;</i>.</p>
+
+<p style="margin-left:18%;">The ports that <b><a href="./scripts.php?script=delmail">delmail</a></b>
+knows how to handle are 143, 993 and 22.</p>
+
+<p style="margin-left:18%; margin-top: 1em">If port 143 is
+used <b><a href="./scripts.php?script=delmail">delmail</a></b> will access the mail account using
+<b>expect</b> and <b>telnet</b> to send the appropriate
+<b>IMAP</b> commands.</p>
+
+<p style="margin-left:18%; margin-top: 1em">If port 993 is
+selected <b><a href="./scripts.php?script=delmail">delmail</a></b> will try to use <b>openssl</b> with
+<b>expect</b>.</p>
+
+<p style="margin-left:18%; margin-top: 1em">Use of both
+ports 143 and 993 will be relatively slow and require
+knowledge of the mail account password which may be passed
+on the command line or stored in <b>delmail.cf</b>. Using
+these options does however have the advantage that no
+knowledge of the backend mail store architecture is
+required.</p>
+
+<p style="margin-left:18%; margin-top: 1em">Using 22
+(<b>ssh</b>) has the advantage of being much quicker and the
+user only requires <b>sudo</b> root access. At present
+however only <b>Courier</b> mailboxes, as configured by
+<b>Plesk</b> under <b>CentOS 6</b>, are supported.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<colgroup><col width="11%"></col>
+<col width="3%"></col>
+<col width="4%" class="center"></col>
+<col width="82%"></col>
+</colgroup>
+<tr valign="top" align="left">
+<td></td>
+<td>
+
+
+<p><b>-s</b></p></td>
+<td></td>
+<td>
+
+
+<p>Force the script to use the imap protocol to contact the
+mail host.</p></td></tr>
+</table>
+
+<p style="margin-left:11%;"><b>-u</b>
+<i>&lt;username&gt;</i>.</p>
+
+<p style="margin-left:18%;">The name for the IMAP account
+login. In reality this duplicates the <b>-a</b> option but
+it just seemed more intuitive to have both.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<colgroup><col width="11%"></col>
+<col width="3%"></col>
+<col width="4%" class="center"></col>
+<col width="82%"></col>
+</colgroup>
+<tr valign="top" align="left">
+<td></td>
+<td>
+
+
+<p><b>-v</b></p></td>
+<td></td>
+<td>
+
+
+<p>Set verbose mode on. Without this option <b><a href="./scripts.php?script=delmail">delmail</a></b>
+reports only on those mail boxes where the number of
+messages either equals or exceeds the trigger value for
+warnings. With the <b>-v</b> option <b><a href="./scripts.php?script=delmail">delmail</a></b> always
+reports the checking of a mail box and the number of
+messages found.</p></td></tr>
+</table>
+
+<p style="margin-left:11%;"><b>-w</b> <i>&lt;#_no_of
+messages&gt;</i></p>
+
+<p style="margin-left:18%;">Sets the threshold for the
+number of messages a mail box may hold before a warning is
+issued. If the <b>-n</b> option is used warning message will
+be sent by e-mail to the mail box owner or the person
+defined in the configuration file with the <i>alert</i>
+equate, a warning is also printed to standard error.</p>
+
+<p style="margin-left:18%; margin-top: 1em">The warning
+threshold may also be set in the configuration file but will
+be over ridden by the value set here.</p>
+
+<p style="margin-left:11%;">&lt;<i>config_id</i>&gt;</p>
+
+<p style="margin-left:18%;">The configuration identity is
+the key to the stanza in the configuration file which will
+be used to determine the values to be used by the script.
+The configuration equates recognised by the scripts are:</p>
+
+<pre style="margin-left:18%; margin-top: 1em">addr      Email address to be checked.
+imap      IMAP server name or IP.
+passwd    Password for the email account.
+alert     Recipient address for alerts.
+warn      Trigger value for e-mail alerts.
+folders   The mailbox folders to be checked.</pre>
+
+
+<p style="margin-left:11%;"><b>-V</b> Print the version
+details and exit.</p>
+
+<h2 id="heading6">FILES
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><i><a href="./scripts.php?script=delmail.cf">delmail.cf</a></i>,
+<i><a href="./scripts.php?script=msg_cnt">msg_cnt</a></i>, <i><a href="./scripts.php?script=msg_del">msg_del</a></i>.</p>
+
+<h2 id="heading7">EXAMPLES
+</h2>
+
+
+<p style="margin-left:22%; margin-top: 1em"><tt>delmail -v
+-l -w 100 <a href="mailto:fulford@fulford.net" title="Send mail to Clifford W Fulford">fulford@fulford.net</a></tt></p>
+
+<p style="margin-left:11%; margin-top: 1em">The id
+&quot;flash&quot; is looked up in the default configuration
+file <i>/usr/local/etc/<a href="./scripts.php?script=delmail.cf">delmail.cf</a></i>. Using the e-mail
+account name and password found there, the script calls an
+<b>expect</b> script <i>/usr/local/etc/<a href="./scripts.php?script=msg_cnt">msg_cnt</a></i> to login
+to the IMAP server and get a count of the messages in the
+nominated mailbox. If the number of messages exceeds the
+default of 100 a warning is printed to screen.</p>
+
+<pre style="margin-left:22%; margin-top: 1em">delmail -a arthur.pendragon@camelot.co.uk \
+-i imap.mailservice.com -l -p password  -m INBOX.Spam</pre>
+
+
+<p style="margin-left:11%; margin-top: 1em">No
+configuration id has been given so <b>delmail</b> will only
+use the command line options. An IMAP login will be
+attempted on imap.mailservice.com using the user name
+arthur.pendragon@camelot.co.uk and the password
+&quot;password&quot; as given on the command line. The check
+will be performed on the folder &quot;INBOX.Spam&quot;and
+the total number of messages returned will be logged using
+the local syslog facility. A warning will be printed to
+screen if the folder holds more than the default value of
+100.</p>
+
+<pre style="margin-left:22%; margin-top: 1em">delmail  -v -p 993 -w 1000 -x -n dermot</pre>
+
+
+<p style="margin-left:11%; margin-top: 1em">The script will
+lookup the details for &quot;<i>dermot</i>&quot; in the
+default configuration file <i>/usr/local/etc/<a href="./scripts.php?script=delmail.cf">delmail.cf</a></i>.
+The account will be accessed using <b>SSL</b> (secure
+sockets layer) and the INBOX, together with any folders
+specified in the stanza labelled <i>dermot</i>, will be
+checked and the number of messages counted. If there are
+more than 1000 messages in any folder being checked, the
+nominated person (which may or may not be the account
+holder) will be notified and requested to ensure that excess
+messages are removed. The <b>-x</b> option will also ensure
+that messages in excess of 1000 will be deleted.</p>
+
+<h2 id="heading8">BUGS
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">The script is
+quite crude and has very little, if any, error checking. The
+consequences of unexpected input are untested.</p>
+
+<h2 id="heading9">SEE ALSO
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><a href="./scripts.php?script=chkdf&amp;man=y">chkdf</a>,
+<a href="./scripts.php?script=chkftpd&amp;man=y">chkftpd</a>, <a href="./scripts.php?script=chkfw&amp;man=y">chkfw</a>, <a href="./scripts.php?script=chkup&amp;man=y">chkup</a>, <i><a href="./scripts.php?script=msg_cnt">msg_cnt</a></i>,
+<i><a href="./scripts.php?script=msg_del">msg_del</a></i>.</p>
+
+<h2 id="heading10">AUTHOR
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Clifford W
+Fulford, <a href="http://www.citylinux.com"
+title="Go to the City Linux homepage">
+City Linux
+</a>. Contact <a href="mailto:fulford@fulford.net" title="Send mail to Clifford W Fulford">fulford@fulford.net</a> or +44
+(0)709 229 5385.</p>
+
+<h2 id="heading11">HISTORY
+</h2>
+<hr/>
