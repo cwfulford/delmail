@@ -89,7 +89,7 @@ be resolved.
 Use the local syslog facility to log that the check has been made and 
 record the number of messages returned.
 .TP 5
-\fBmw\fI <#max_no_of messages>\fR
+\fB-w\fI <#max_no_of messages>\fR
 Sets the threshold for the number of messages a mail box may hold before
 a warning is issued. If the 
 .B -n
