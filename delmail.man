@@ -1,4 +1,4 @@
-.TH DELMAIL 8l "28th April 2015 r1.9
+.TH DELMAIL 8l "28th April 2015 r1.10
 .SH NAME
 .B delmail
 - deletes excess messages from a specified mail account on a remote IMAP server.
@@ -198,7 +198,7 @@ folders   The mailbox folders to be checked.
 .SH EXAMPLES
 .IP
 .ft CW
-delmail -v -l -w 100 fulford@fulford.net
+delmail -v -l -m 100 fulford@fulford.net
 .ft R
 .LP
 The id "flash" is looked up in the default configuration file
@@ -229,7 +229,7 @@ be printed to screen if the folder holds more than the default value of 100.
 .IP
 .nf
 .ft CW
-delmail  -v -p 993 -w 1000 -x -n dermot 
+delmail  -v -p 993 -m 1000 -x -n dermot 
 .ft R
 .fi
 .LP
