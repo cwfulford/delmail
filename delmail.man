@@ -1,4 +1,4 @@
-.TH DELMAIL 8l "28th April 2015 r1.10
+.TH DELMAIL 8l "28th April 2015 r1.11
 .SH NAME
 .B delmail
 - deletes excess messages from a specified mail account on a remote IMAP server.
@@ -82,7 +82,7 @@ The name or IP address of the server to which the
 script or
 .B ssh should connect.
 .LP
-This is only required in the unusual situation where the maildomain cannot
+This is only required in the unusual situation where the mail domain cannot
 be resolved.
 .TP 5
 .B -l
@@ -141,7 +141,7 @@ Use of both ports 143 and 993 will be relatively slow and require knowledge of t
 mail account password which may be passed on the command line or stored in
 .BR delmail.cf .
 Using these options does however have the advantage that no knowledge of the 
-backend mail store architecture is required.
+back end mail store architecture is required.
 .IP
 Using 22 (\fBssh\fR)
 has the advantage of being much quicker and the user only requires 
@@ -233,7 +233,7 @@ delmail  -v -p 993 -m 1000 -x -n dermot
 .ft R
 .fi
 .LP
-The script will lookup the details for "\fIdermot\fR" in the default
+The script will look-up the details for "\fIdermot\fR" in the default
 configuration file
 .IR /usr/local/etc/delmail.cf .
 The account will be accessed using 
