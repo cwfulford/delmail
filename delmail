@@ -1,7 +1,7 @@
 #!/bin/bash
-# $Id: delmail,v 1.11 2015/06/18 10:18:44 fulford Exp fulford $
+# $Id: delmail,v 1.12 2016/03/30 14:14:14 fulford Exp fulford $
 # $Source: /src/merlin/usr/local/etc/RCS/delmail,v $
-# $Revision: 1.11 $
+# $Revision: 1.12 $
 # Author C W Fulford.
 # Copyright 2014-2015 (c) C W Fulford.
 # Licensed for public use under the LGPL, .
@@ -37,12 +37,13 @@ while [ $# -gt 0 ] ;do
 		-p) port=$2>>$tmp;shift 2;;
 		-u) echo "user=$2">>$tmp;shift 2;;
 		-v) verbose=:;nl="\\n";shift;;
-		-V) echo "$cmd $Revision: 1.11 $ $Date: 2015/06/18 10:18:44 $"|awk '{print $1,$3,$6}';exit;;  
+		-V) echo "$cmd $Revision: 1.12 $ $Date: 2016/03/30 14:14:14 $"|awk '{print $1,$3,$6}';exit;;  
 		-*) echo "syntax: $syntax">&2;exit 1;;
 	         *) idlist=$1;shift;;
 	esac
 done
 config=${config:="/usr/local/etc/chkmail.cf"}
+
 
 [ -n $idlist ] ||{ echo "syntax: $syntax" >&2;exit 1;}
 [ $idlist == ALL -a $cmd == "chkmail" ]&&{
@@ -54,15 +55,7 @@ cnt_msgs=/usr/local/etc/msg_cnt
 lst_mbxs=/usr/local/etc/lst_mbxs
 del_msgs=/usr/local/etc/msg_del
 
-case $port in
-	22) proto=ssh;;
-	143) proto=imap;;
-	993) proto=ssl;;
-	"") port=22;proto=ssh;
-	    [ "$verbose" ] && echo "$cmd: using port 22." >&2;;
-	*) echo "$cmd: proceedure for $port not known." >&2;exit;;
-esac
-proto=${proto:-"ssl"}
+
 for id in $idlist ;do
 	unset addr alert archives afolders max mbox po srvr user
 	[ -r "$config" -a -n "$id" -a $id != "ALL" ] && {
@@ -74,6 +67,15 @@ for id in $idlist ;do
 		fi
 	}
 	[ -f $tmp ] && . $tmp
+	case $port in
+		22) proto=ssh;;
+		143) proto=imap;;
+		993) proto=ssl;;
+		"") port=22;proto=ssh;
+		    [ "$verbose" ] && echo "$cmd: using port 22." >&2;;
+		*) echo "$cmd: proceedure for $port not known." >&2;exit;;
+	esac
+	proto=${proto:-"ssl"}
 
 
 	# set defaults if nothing found
